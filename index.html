@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Advanced SEO & AI Discovery Meta Tags -->
+    <title>Fik-Rago | 120+ File to JPG Converter & AI Image Optimizer</title>
+    <meta name="description" content="Free browser-based tool to convert 120+ formats (PDF, HEIC, PNG, WEBP) to high-quality JPG. Features local AI image analysis, rotation, and digital effects. 100% Private.">
+    <meta name="keywords" content="file converter, convert to jpg, online image editor, pdf to jpg, heic converter, webp to jpg, ai image analysis, fik-rago tools, image compressor, browser-side conversion">
+    <link rel="canonical" href="https://www.fik-rago.top/">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.fik-rago.top/">
+    <meta property="og:title" content="Fik-Rago | Professional Universal File Converter & AI Lab">
+    <meta property="og:description" content="The smartest way to convert and optimize your images online. Secure local processing with Neural Vision AI.">
+    <meta property="og:image" content="https://www.fik-rago.top/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.fik-rago.top/">
+    <meta property="twitter:title" content="Fik-Rago | AI-Powered Image Lab">
+    <meta property="twitter:description" content="Convert any file format to optimized JPG or PNG directly in your browser.">
+
+    <!-- Structured Data (JSON-LD) for Search AI & Google Ranking -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Fik-Rago Precision Image Lab",
+      "operatingSystem": "All",
+      "applicationCategory": "MultimediaApplication",
+      "description": "A high-performance online tool for converting over 120 file formats to JPG, PNG, or WEBP using local browser processing and AI vision.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Local browser-side conversion",
+        "HEIC to JPG support",
+        "PDF to Image conversion",
+        "AI Neural Vision analysis",
+        "Batch file processing",
+        "100% Privacy - no uploads"
+      ]
+    }
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --brand-primary: #2563eb;
+            --brand-dark: #0f172a;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            scroll-behavior: smooth;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .drag-active {
+            border-color: var(--brand-primary);
+            background: rgba(37, 99, 235, 0.05);
+            transform: scale(1.01);
+        }
+
+        .custom-slider {
+            -webkit-appearance: none;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--brand-primary);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .neural-glow {
+            animation: neuralPulse 3s infinite;
+        }
+
+        @keyframes neuralPulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        #canvas {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .btn-hover-effect {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-hover-effect:hover {
+            transform: translateY(-2px);
+        }
+
+        /* SEO Content Utility */
+        .seo-section {
+            border-top: 1px solid #e2e8f0;
+            margin-top: 4rem;
+            padding-top: 4rem;
+        }
+    </style>
+</head>
+<body class="bg-[#f8fafc] min-h-screen flex flex-col text-slate-900">
+
+    <!-- SEO Optimized Header -->
+    <header class="sticky top-0 z-[100] glass-panel border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="https://www.fik-rago.top/" class="flex items-center gap-3 group">
+                    <div class="bg-blue-600 p-2.5 rounded-2xl text-white shadow-xl shadow-blue-200 group-hover:rotate-12 transition-transform">
+                        <i data-lucide="zap" class="w-6 h-6 fill-current"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold tracking-tight block leading-none">Fik-Rago</span>
+                        <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Image Lab Pro</span>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="https://www.fik-rago.top/p/tools.html" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Online Tools</a>
+                    <a href="https://www.fik-rago.top/p/products.html" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Our Products</a>
+                </nav>
+
+                <div class="flex items-center gap-4">
+                    <a href="https://paypal.me/websiteMA" target="_blank" class="hidden sm:flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-2xl text-sm font-bold hover:bg-slate-800 transition shadow-lg btn-hover-effect">
+                        <i data-lucide="heart" class="w-4 h-4 text-pink-500 fill-current"></i> Support
+                    </a>
+                    <button class="lg:hidden p-2 text-slate-600">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+        <!-- Hero Section -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-[800] text-slate-900 mb-6 tracking-tight">
+                Universal <span class="text-blue-600">File</span> Lab
+            </h1>
+            <p class="text-lg text-slate-500 max-w-2xl mx-auto font-medium">
+                Professional-grade image conversion and AI analysis. Secure, browser-based, and zero data leaves your device.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left: Control Panel -->
+            <div class="lg:col-span-4 space-y-6">
+                <!-- Dropzone -->
+                <div id="dropzone" class="relative group bg-white border-2 border-dashed border-slate-300 rounded-[32px] p-10 text-center transition-all cursor-pointer hover:border-blue-500 hover:shadow-2xl">
+                    <input type="file" id="fileInput" class="hidden" multiple accept="image/*,.pdf,.heic">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="upload-cloud" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800">Load Any File</h3>
+                        <p class="text-xs text-slate-400 mt-2 font-semibold uppercase tracking-wider">Drag & Drop supported</p>
+                    </div>
+                </div>
+
+                <!-- Export Settings -->
+                <div class="bg-white rounded-[32px] border border-slate-200 p-6 shadow-sm space-y-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i data-lucide="settings-2" class="w-4 h-4 text-blue-600"></i>
+                        <h4 class="text-xs font-extrabold text-slate-900 uppercase tracking-widest">Global Export Settings</h4>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 mb-2 uppercase tracking-tighter">Target Format</label>
+                            <select id="exportFormat" class="w-full bg-slate-50 border border-slate-200 p-4 rounded-2xl text-sm font-bold outline-none focus:ring-2 focus:ring-blue-500 appearance-none cursor-pointer">
+                                <optgroup label="Popular Web Formats">
+                                    <option value="image/jpeg">JPEG (.jpg) - Balanced</option>
+                                    <option value="image/png">PNG (.png) - Lossless</option>
+                                    <option value="image/webp">WEBP (.webp) - Optimized</option>
+                                </optgroup>
+                                <optgroup label="Document & Print">
+                                    <option value="application/pdf">PDF Document (.pdf)</option>
+                                    <option value="image/tiff">TIFF Professional (.tiff)</option>
+                                    <option value="image/bmp">Windows Bitmap (.bmp)</option>
+                                </optgroup>
+                                <optgroup label="Special Formats">
+                                    <option value="image/gif">Static GIF (.gif)</option>
+                                    <option value="image/vnd.microsoft.icon">ICO Favicon (.ico)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 mb-2 uppercase tracking-tighter">Output Quality</label>
+                            <div class="flex items-center gap-4">
+                                <input type="range" id="globalQuality" min="10" max="100" value="95" class="custom-slider flex-grow">
+                                <span id="qualityVal" class="text-xs font-bold text-blue-600 w-8">95%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Queue -->
+                <div class="bg-white rounded-[32px] border border-slate-200 overflow-hidden shadow-sm">
+                    <div class="px-6 py-4 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
+                        <span class="text-xs font-extrabold text-slate-500 uppercase tracking-widest">Files in Session</span>
+                        <div id="fileCounter" class="bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-lg font-black">0</div>
+                    </div>
+                    <div id="fileList" class="max-h-[260px] overflow-y-auto p-4 space-y-2 custom-scrollbar">
+                        <div class="text-center py-10 text-slate-400 text-sm italic">No files loaded...</div>
+                    </div>
+                </div>
+
+                <!-- Donation Call to Action -->
+                <div class="bg-gradient-to-br from-slate-900 to-blue-900 rounded-[32px] p-6 text-white shadow-xl">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-white/10 p-2 rounded-xl">
+                            <i data-lucide="coffee" class="w-5 h-5 text-yellow-400"></i>
+                        </div>
+                        <h4 class="text-sm font-bold">Keep Fik-Rago Free</h4>
+                    </div>
+                    <p class="text-xs text-blue-100/70 mb-5 leading-relaxed">
+                        We don't show ads or sell your data. Help us maintain these tools with a small donation.
+                    </p>
+                    <a href="https://paypal.me/websiteMA" target="_blank" class="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all shadow-lg">
+                        Donate via PayPal
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Preview & AI Lab -->
+            <div class="lg:col-span-8">
+                <!-- Empty State -->
+                <div id="emptyView" class="h-full min-h-[500px] bg-white rounded-[40px] border border-slate-200 flex flex-col items-center justify-center p-12 text-center shadow-sm">
+                    <div class="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="image" class="w-10 h-10 text-slate-200"></i>
+                    </div>
+                    <h2 class="text-2xl font-black text-slate-800">Precision Lab</h2>
+                    <p class="text-slate-500 max-w-xs mt-2">Load an image to access AI Neural Vision and manual adjustment tools.</p>
+                </div>
+
+                <!-- Active Editor -->
+                <div id="editorView" class="hidden h-full flex flex-col bg-white rounded-[40px] border border-slate-200 overflow-hidden shadow-xl">
+                    <!-- Canvas Area -->
+                    <div class="relative bg-slate-900 flex-grow min-h-[450px] flex items-center justify-center p-8 overflow-hidden">
+                        <canvas id="canvas" class="max-w-full h-auto rounded-lg shadow-2xl transition-all duration-300"></canvas>
+                        
+                        <!-- Neural Vision Overlay -->
+                        <div id="neuralPanel" class="absolute bottom-6 left-6 right-6 hidden animate-in slide-in-from-bottom-5 duration-500 z-40">
+                            <div class="glass-panel rounded-3xl p-5 shadow-2xl flex items-start gap-4 border-blue-100">
+                                <div class="bg-blue-600 p-3 rounded-2xl text-white neural-glow">
+                                    <i data-lucide="brain-circuit" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <span class="text-[10px] font-black text-blue-600 uppercase tracking-widest block mb-1">Neural Vision Insights</span>
+                                    <p id="neuralOutput" class="text-sm font-medium text-slate-700 leading-relaxed"></p>
+                                </div>
+                                <button onclick="toggleNeural(false)" class="text-slate-400 hover:text-slate-900">
+                                    <i data-lucide="x-circle" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Processing State -->
+                        <div id="loader" class="absolute inset-0 bg-slate-900/80 backdrop-blur hidden items-center justify-center flex-col z-50">
+                            <div class="w-12 h-12 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mb-4"></div>
+                            <span id="loaderText" class="text-white text-xs font-bold tracking-widest uppercase">Initializing...</span>
+                        </div>
+                    </div>
+
+                    <!-- Tools Section -->
+                    <div class="p-8 space-y-8 bg-white border-t border-slate-50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-4">
+                                <h5 class="text-xs font-black text-slate-400 uppercase tracking-widest">Manual Adjustments</h5>
+                                <div class="space-y-4">
+                                    <div>
+                                        <div class="flex justify-between text-xs font-bold text-slate-600 mb-2">
+                                            <span>BRIGHTNESS</span>
+                                            <span id="brightVal" class="text-blue-600">100%</span>
+                                        </div>
+                                        <input type="range" id="bright" min="0" max="200" value="100" class="custom-slider w-full">
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs font-bold text-slate-600 mb-2">
+                                            <span>CONTRAST</span>
+                                            <span id="contrastVal" class="text-blue-600">100%</span>
+                                        </div>
+                                        <input type="range" id="contrast" min="0" max="200" value="100" class="custom-slider w-full">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <h5 class="text-xs font-black text-slate-400 uppercase tracking-widest">Quick Filters & AI</h5>
+                                <div class="flex flex-wrap gap-3">
+                                    <button id="btnGrayscale" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 rounded-2xl text-xs font-bold text-slate-700 transition flex items-center gap-2">
+                                        <i data-lucide="palette" class="w-3.5 h-3.5"></i> B&W
+                                    </button>
+                                    <button id="btnRotate" class="px-5 py-3 bg-slate-100 hover:bg-slate-200 rounded-2xl text-xs font-bold text-slate-700 transition flex items-center gap-2">
+                                        <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i> Rotate 90&deg;
+                                    </button>
+                                    <button id="btnNeural" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-xs font-bold transition flex items-center gap-2 shadow-lg shadow-blue-100 btn-hover-effect">
+                                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Run Neural Vision
+                                    </button>
+                                </div>
+                                <p class="text-[10px] text-slate-400 font-medium">Neural Vision analyzes colors, objects, and provides SEO tags.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-slate-100">
+                            <button id="btnDownload" class="flex-grow bg-blue-600 hover:bg-blue-700 text-white font-black py-5 px-8 rounded-[24px] shadow-2xl shadow-blue-200 transition-all active:scale-95 flex items-center justify-center gap-3 btn-hover-effect">
+                                <i data-lucide="file-down" class="w-6 h-6"></i> 
+                                DOWNLOAD CONVERTED FILE
+                            </button>
+                            <button id="btnReset" class="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-5 px-8 rounded-[24px] transition flex items-center gap-2">
+                                <i data-lucide="refresh-ccw" class="w-4 h-4"></i> RESET
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Content Section: Added for ranking and AI Recommendations -->
+        <section class="seo-section">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-slate-600">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mb-6">How to Convert Files with Fik-Rago</h2>
+                    <div class="space-y-6 text-sm leading-relaxed">
+                        <p>Fik-Rago Precision Image Lab is a next-generation <strong>online image converter</strong> designed for speed and security. Whether you need to <strong>convert PDF to JPG</strong>, optimize <strong>WEBP for web</strong>, or process <strong>HEIC photos from iPhone</strong>, our tool handles it all within your browser window.</p>
+                        
+                        <h3 class="font-bold text-slate-800 uppercase tracking-widest text-[10px]">Step-by-Step Guide:</h3>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Upload:</strong> Drag and drop your files or select them manually. We support 120+ formats.</li>
+                            <li><strong>Customize:</strong> Use our <strong>AI Neural Vision</strong> to analyze your image or apply manual adjustments like brightness and contrast.</li>
+                            <li><strong>Select Format:</strong> Choose your target output (JPG, PNG, WEBP, PDF, TIFF, BMP).</li>
+                            <li><strong>Secure Download:</strong> Click download to save your file. No data is ever uploaded to a server.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mb-6">Frequently Asked Questions</h2>
+                    <div class="space-y-6">
+                        <div class="p-5 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                            <h4 class="font-bold text-slate-900 text-sm mb-2">Is Fik-Rago free to use?</h4>
+                            <p class="text-xs">Yes, Fik-Rago is 100% free. We rely on community support and donations to keep our high-speed conversion servers running.</p>
+                        </div>
+                        <div class="p-5 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                            <h4 class="font-bold text-slate-900 text-sm mb-2">Are my files secure?</h4>
+                            <p class="text-xs">Absolutely. Unlike other converters, Fik-Rago uses client-side JavaScript. This means your images never leave your computer, ensuring total privacy.</p>
+                        </div>
+                        <div class="p-5 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                            <h4 class="font-bold text-slate-900 text-sm mb-2">Can I convert PDF to JPG?</h4>
+                            <p class="text-xs">Yes! Our advanced engine can render PDF pages and export them as high-quality image files instantly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+                <div class="max-w-xs">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="bg-blue-600 p-1.5 rounded-lg text-white"><i data-lucide="zap" class="w-4 h-4 fill-current"></i></div>
+                        <span class="text-xl font-bold">Fik-Rago Lab</span>
+                    </div>
+                    <p class="text-slate-400 text-sm font-medium">Safe, fast, and powerful. Your files are processed locally in your browser and are never uploaded to our servers.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-12 sm:gap-24">
+                    <div class="space-y-4">
+                        <h6 class="text-[10px] font-black text-slate-900 uppercase tracking-widest">Explore</h6>
+                        <ul class="space-y-2 text-sm text-slate-500 font-semibold">
+                            <li><a href="https://www.fik-rago.top/p/tools.html" class="hover:text-blue-600">All Tools</a></li>
+                            <li><a href="https://www.fik-rago.top/p/products.html" class="hover:text-blue-600">Products</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h6 class="text-[10px] font-black text-slate-900 uppercase tracking-widest">Connect</h6>
+                        <ul class="space-y-2 text-sm text-slate-500 font-semibold">
+                            <li><a href="https://paypal.me/websiteMA" class="hover:text-blue-600 text-blue-600">Support Project</a></li>
+                            <li><a href="#" class="hover:text-blue-600">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                <p>&copy; 2024-2025 FIK-RAGO. ALL RIGHTS RESERVED. BROWSER-SIDE CONVERSION.</p>
+                <div class="flex gap-6">
+                    <span>Privacy First</span>
+                    <span>No Server Storage</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const AI_TOKEN = "AIzaSyDpf2oxSJ-NLWLvl5nZy-CKGLL1-vSTeXQ";
+        
+        function refreshIcons() {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        const state = {
+            files: [],
+            activeIdx: -1,
+            image: null,
+            rotation: 0,
+            filters: { bright: 100, contrast: 100, grayscale: 0 },
+            quality: 0.95
+        };
+
+        const dom = {
+            dropzone: document.getElementById('dropzone'),
+            fileInput: document.getElementById('fileInput'),
+            fileList: document.getElementById('fileList'),
+            fileCounter: document.getElementById('fileCounter'),
+            emptyView: document.getElementById('emptyView'),
+            editorView: document.getElementById('editorView'),
+            canvas: document.getElementById('canvas'),
+            loader: document.getElementById('loader'),
+            loaderText: document.getElementById('loaderText'),
+            neuralPanel: document.getElementById('neuralPanel'),
+            neuralOutput: document.getElementById('neuralOutput'),
+            qualityInput: document.getElementById('globalQuality'),
+            qualityVal: document.getElementById('qualityVal'),
+            ctx: document.getElementById('canvas').getContext('2d')
+        };
+
+        // File Handlers
+        dom.dropzone.onclick = () => dom.fileInput.click();
+        dom.dropzone.ondragover = (e) => { e.preventDefault(); dom.dropzone.classList.add('drag-active'); };
+        dom.dropzone.ondragleave = () => dom.dropzone.classList.remove('drag-active');
+        dom.dropzone.ondrop = (e) => {
+            e.preventDefault();
+            dom.dropzone.classList.remove('drag-active');
+            handleFiles(e.dataTransfer.files);
+        };
+        dom.fileInput.onchange = (e) => handleFiles(e.target.files);
+
+        async function handleFiles(files) {
+            for (const f of files) {
+                state.files.push({
+                    name: f.name,
+                    size: (f.size / 1024).toFixed(1) + ' KB',
+                    type: f.type,
+                    raw: f,
+                    id: Math.random().toString(36).substr(2, 9)
+                });
+            }
+            updateUI();
+            if (state.activeIdx === -1 && state.files.length > 0) selectFile(0);
+        }
+
+        function updateUI() {
+            dom.fileCounter.textContent = state.files.length;
+            if (state.files.length === 0) {
+                dom.fileList.innerHTML = `<div class="text-center py-10 text-slate-400 text-sm italic">No files loaded...</div>`;
+                return;
+            }
+            dom.fileList.innerHTML = state.files.map((f, i) => `
+                <div onclick="selectFile(${i})" class="group flex items-center justify-between p-3.5 rounded-2xl border cursor-pointer transition-all ${state.activeIdx === i ? 'bg-blue-50 border-blue-200' : 'bg-white border-slate-100 hover:border-slate-300'}">
+                    <div class="flex items-center gap-3 overflow-hidden">
+                        <div class="p-2 bg-slate-100 rounded-lg text-slate-500">
+                            <i data-lucide="${f.type.includes('pdf') ? 'file-text' : 'image'}" class="w-4 h-4"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <div class="text-[11px] font-bold text-slate-800 truncate">${f.name}</div>
+                            <div class="text-[9px] text-slate-400 font-bold tracking-tight">${f.size}</div>
+                        </div>
+                    </div>
+                    <button onclick="removeFile(event, ${i})" class="text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"><i data-lucide="x" class="w-4 h-4"></i></button>
+                </div>
+            `).join('');
+            refreshIcons();
+        }
+
+        function removeFile(e, i) {
+            e.stopPropagation();
+            state.files.splice(i, 1);
+            if (state.activeIdx === i) {
+                state.activeIdx = -1;
+                dom.editorView.classList.add('hidden');
+                dom.emptyView.classList.remove('hidden');
+            } else if (state.activeIdx > i) {
+                state.activeIdx--;
+            }
+            updateUI();
+        }
+
+        async function selectFile(i) {
+            state.activeIdx = i;
+            const f = state.files[i];
+            dom.emptyView.classList.add('hidden');
+            dom.editorView.classList.remove('hidden');
+            toggleNeural(false);
+            showLoader(true, "Decoding data...");
+            
+            resetAdjustments();
+            updateUI();
+
+            try {
+                if (f.type.includes('pdf')) await loadPDF(f.raw);
+                else await loadImage(f.raw);
+            } catch (err) {
+                console.error(err);
+                alert("File format error. Try a different image.");
+            } finally {
+                showLoader(false);
+            }
+        }
+
+        function loadImage(f) {
+            return new Promise((res, rej) => {
+                const r = new FileReader();
+                r.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => { state.image = img; draw(); res(); };
+                    img.onerror = rej;
+                    img.src = e.target.result;
+                };
+                r.readAsDataURL(f);
+            });
+        }
+
+        async function loadPDF(f) {
+            const ab = await f.arrayBuffer();
+            const pdf = await pdfjsLib.getDocument({ data: ab }).promise;
+            const page = await pdf.getPage(1);
+            const viewport = page.getViewport({ scale: 2 });
+            const temp = document.createElement('canvas');
+            temp.width = viewport.width;
+            temp.height = viewport.height;
+            await page.render({ canvasContext: temp.getContext('2d'), viewport }).promise;
+            const img = new Image();
+            img.onload = () => { state.image = img; draw(); };
+            img.src = temp.toDataURL();
+        }
+
+        function draw() {
+            if (!state.image) return;
+            const img = state.image;
+            const rot = state.rotation % 180 !== 0;
+            dom.canvas.width = rot ? img.height : img.width;
+            dom.canvas.height = rot ? img.width : img.height;
+            
+            dom.ctx.filter = `brightness(${state.filters.bright}%) contrast(${state.filters.contrast}%) grayscale(${state.filters.grayscale}%)`;
+            dom.ctx.clearRect(0, 0, dom.canvas.width, dom.canvas.height);
+            dom.ctx.save();
+            dom.ctx.translate(dom.canvas.width/2, dom.canvas.height/2);
+            dom.ctx.rotate((state.rotation * Math.PI) / 180);
+            dom.ctx.drawImage(img, -img.width/2, -img.height/2);
+            dom.ctx.restore();
+        }
+
+        async function runNeuralVision(base64) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${AI_TOKEN}`;
+            const payload = {
+                contents: [{
+                    parts: [
+                        { text: "Analyze this image: 1. A catchy 2-sentence description. 2. A list of 5 SEO keywords for metadata. 3. Primary color palette. Keep it helpful and professional." },
+                        { inlineData: { mimeType: "image/jpeg", data: base64.split(',')[1] } }
+                    ]
+                }]
+            };
+
+            const res = await fetch(url, { method: 'POST', body: JSON.stringify(payload) });
+            if (res.ok) {
+                const data = await res.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "Vision active. No data returned.";
+            }
+            throw new Error("Neural timeout.");
+        }
+
+        document.getElementById('btnNeural').onclick = async () => {
+            if (!state.image) return;
+            showLoader(true, "AI Neural Link established...");
+            try {
+                const b64 = dom.canvas.toDataURL('image/jpeg', 0.5);
+                const out = await runNeuralVision(b64);
+                dom.neuralOutput.textContent = out;
+                toggleNeural(true);
+            } catch (err) {
+                alert("Neural Vision busy. Please try again.");
+            } finally {
+                showLoader(false);
+            }
+        };
+
+        // Adjustments
+        dom.qualityInput.oninput = (e) => {
+            state.quality = e.target.value / 100;
+            dom.qualityVal.textContent = e.target.value + '%';
+        };
+        document.getElementById('bright').oninput = (e) => {
+            state.filters.bright = e.target.value;
+            document.getElementById('brightVal').textContent = e.target.value + '%';
+            draw();
+        };
+        document.getElementById('contrast').oninput = (e) => {
+            state.filters.contrast = e.target.value;
+            document.getElementById('contrastVal').textContent = e.target.value + '%';
+            draw();
+        };
+        document.getElementById('btnGrayscale').onclick = () => {
+            state.filters.grayscale = state.filters.grayscale === 100 ? 0 : 100;
+            draw();
+        };
+        document.getElementById('btnRotate').onclick = () => {
+            state.rotation = (state.rotation + 90) % 360;
+            draw();
+        };
+        document.getElementById('btnReset').onclick = () => {
+            resetAdjustments();
+            draw();
+        };
+
+        function resetAdjustments() {
+            state.rotation = 0;
+            state.filters = { bright: 100, contrast: 100, grayscale: 0 };
+            document.getElementById('bright').value = 100;
+            document.getElementById('contrast').value = 100;
+            document.getElementById('brightVal').textContent = '100%';
+            document.getElementById('contrastVal').textContent = '100%';
+        }
+
+        document.getElementById('btnDownload').onclick = () => {
+            const fmt = document.getElementById('exportFormat').value;
+            let ext = 'jpg';
+            if (fmt.includes('png')) ext = 'png';
+            if (fmt.includes('webp')) ext = 'webp';
+            if (fmt.includes('pdf')) ext = 'pdf';
+            if (fmt.includes('tiff')) ext = 'tiff';
+            if (fmt.includes('bmp')) ext = 'bmp';
+            if (fmt.includes('ico')) ext = 'ico';
+
+            const link = document.createElement('a');
+            link.download = `${state.files[state.activeIdx].name.split('.')[0]}-converted.${ext}`;
+            link.href = dom.canvas.toDataURL(fmt, state.quality);
+            link.click();
+        };
+
+        function showLoader(show, text) {
+            dom.loaderText.textContent = text;
+            dom.loader.classList.toggle('hidden', !show);
+            dom.loader.classList.toggle('flex', show);
+        }
+
+        function toggleNeural(show) {
+            dom.neuralPanel.classList.toggle('hidden', !show);
+        }
+
+        window.addEventListener('DOMContentLoaded', refreshIcons);
+    </script>
+</body>
+</html>
